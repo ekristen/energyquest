@@ -1,16 +1,22 @@
+# Introduction
 Everything assumes you have LUA installed.
 
-Tests:
+# How to Play
+
+## Starting the Game
+
+lua game.lua
+
+## Instructions
+
+
+
+# Tests
+
+## How to Run the Tests
 
 cd test
 
 lua level.test.lua 
 
 lua player.test.lua
-
-
-To player the game ...
-
-lua run.lua
-
-

@@ -9,7 +9,6 @@ function Player.new (initialEnergy)
   return self
 end
 
-
 function Player.addEnergy (self, e)
   self.energy = self.energy + e
 end

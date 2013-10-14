@@ -56,6 +56,14 @@ function Level.getFoodPosition(self)
   return self.foodPositionXY
 end
 
+function Level.setPlayerPositionX(self, x)
+  self.playerPositionX = x
+end
+
+function Level.setPlayerPositionY(self, y)
+  self.playerPositionY = y
+end
+
 function Level.movePlayer(self, direction)
 
   if direction == "l" then
