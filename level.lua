@@ -131,3 +131,31 @@ function Level.movePlayer(self, direction)
   
   return 1
 end
+
+
+function Level.showPlayerMap(self)
+  playerX = self:getPlayerPositionX()
+  playerY = self:getPlayerPositionY()
+
+  io.write("Player Map\n")
+  io.write("-----------\n")
+
+  for y=0, self.size, 1 do
+    for x=0, self.size, 1 do
+      if y == 0 and x == 0 then
+        io.write("  ")
+      elseif y == 0 and x > 0 then
+        io.write(x .. " ")
+      elseif y > 0 and x == 0 then
+        io.write(y .. " ")
+      elseif playerX == x and playerY == y then
+        io.write("X")
+      else
+        io.write("  ")
+      end
+    end
+    io.write("\n")
+  end
+  
+  io.write("\n")
+end

@@ -48,6 +48,8 @@ function Quest.response(self)
   local response
 
   repeat
+    level:showPlayerMap()
+
     io.write("Which direction do you want to move? ")
     io.write("(l, r, u, d): ")
     io.flush()
