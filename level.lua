@@ -7,18 +7,6 @@ function Level.new(initialSize)
 
   self.gridSize = initialSize * initialSize
 
-  self.grid = {}
-
-  -- Initialize our grid
-  for i=0,self.size do
-    self.grid[i] = {}
-    for j=0,self.size do
-      self.grid[i][j] = {}
-      self.grid[i][j].food = false
-      self.grid[i][j].player = false
-    end
-  end
-
   math.randomseed(os.time())
 
   -- set up initial player positions
@@ -37,9 +25,6 @@ function Level.new(initialSize)
     self.foodPositionY = math.random(0, self.size)
     self.foodPositionXY = self.foodPositionX .. self.foodPositionY
   end
-
-  self.grid[self.playerPositionX][self.playerPositionY].player = true
-  self.grid[self.foodPositionX][self.foodPositionY].food = true
 
   return self
 end
@@ -102,9 +87,7 @@ function Level.movePlayer(self, direction)
   if direction == "l" then
     if self.playerPositionX > 0 then
       newPlayerPositionX = self.playerPositionX - 1
-      self.grid[self.playerPositionX][self.playerPositionY].player = false;
       self.playerPositionX = newPlayerPositionX
-      self.grid[self.playerPositionX][self.playerPositionY].player = true;
       self.playerPositionXY = self.playerPositionX .. self.playerPositionY
     else
       return -1
@@ -112,9 +95,7 @@ function Level.movePlayer(self, direction)
   elseif direction == "r" then
     if self.playerPositionX < self.size then
       newPlayerPositionX = self.playerPositionX + 1
-      self.grid[self.playerPositionX][self.playerPositionY].player = false;
       self.playerPositionX = newPlayerPositionX
-      self.grid[self.playerPositionX][self.playerPositionY].player = true;
       self.playerPositionXY = self.playerPositionX .. self.playerPositionY
     else
       return -1
@@ -122,9 +103,7 @@ function Level.movePlayer(self, direction)
   elseif direction == "u" then
     if self.playerPositionY > 0 then
       newPlayerPositionY = self.playerPositionY - 1
-      self.grid[self.playerPositionX][self.playerPositionY].player = false;
       self.playerPositionY = newPlayerPositionY
-      self.grid[self.playerPositionX][self.playerPositionY].player = true;
       self.playerPositionXY = self.playerPositionX .. self.playerPositionY
     else
       return -1
@@ -132,9 +111,7 @@ function Level.movePlayer(self, direction)
   elseif direction == "d" then
     if self.playerPositionY < self.size then
       newPlayerPositionY = self.playerPositionY + 1
-      self.grid[self.playerPositionX][self.playerPositionY].player = false;
       self.playerPositionY = newPlayerPositionY
-      self.grid[self.playerPositionX][self.playerPositionY].player = true;
       self.playerPositionXY = self.playerPositionX .. self.playerPositionY
     else
       return -1
