@@ -1,0 +1,16 @@
+Everything assumes you have LUA installed.
+
+Tests:
+
+cd test
+
+lua level.test.lua 
+
+lua player.test.lua
+
+
+To player the game ...
+
+lua run.lua
+
+
