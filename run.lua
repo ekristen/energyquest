@@ -1,7 +1,7 @@
 require("player")
 require("level")
 
-player = new Player.new(50);
+player = Player.new(50);
 level = Level.new(5)
 
 print("Welcome to Energy Quest!")
@@ -24,14 +24,13 @@ repeat
   response = io.read()
 
   if (response == "l" or response == "r" or response == "u" or response == "d") then
-    moveresponse = level:movePlayer(response, player)
-    print(moveresponse)
+    moveresponse = level:movePlayer(response)
     if (moveresponse == 1) then
-      Player:removeEnergy(1)
+      player:removeEnergy(1)
       print("Move successful, but no food found.")
       print(" Energy level: ", player:getEnergy())
     elseif (moveresponse == 2) then
-      Player:addEnergy(20)
+      player:addEnergy(20)
       print("Move successful, food was found!")
       print(" Energy level: ", player:getEnergy())
     elseif (moveresponse == -1) then

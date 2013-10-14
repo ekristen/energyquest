@@ -111,4 +111,5 @@ function Level.movePlayer(self, direction)
     return 2
   end
   
+  return 1
 end
