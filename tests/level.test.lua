@@ -21,6 +21,16 @@ function TestLevel:testPlayerFoodLocationNotTheSame()
   assertNotEquals( playerPosition, foodPosition )
 end
 
+function TestLevel:testMovePlayerFrom00to22()
+  self.level:setPlayerPositionX(0)
+  self.level:setPlayerPositionY(0)
+  self.level:movePlayer("r")
+  self.level:movePlayer("r")
+  self.level:movePlayer("d")
+  self.level:movePlayer("d")
+  assertEquals( self.level:getPlayerPosition(), "22" )
+end
+
 function TestLevel:testMovePlayerLeftIntoWall()
   self.level:setPlayerPositionX(0)
   self.level:setPlayerPositionY(0)

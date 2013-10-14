@@ -1,11 +1,11 @@
+require("player")
+require("level")
+
 Quest = {}
 Quest.__index = Quest;
 
 function Quest.new (initialEnergy, initialSize)
   local self = setmetatable({}, Quest)
-
-  require("player")
-  require("level")
 
   player = Player.new(50);
   level = Level.new(5)
@@ -16,6 +16,13 @@ function Quest.new (initialEnergy, initialSize)
   return self
 end
 
+function Quest.getPlayer(self)
+  return player
+end
+
+function Quest.getLevel(self)
+  return level
+end
 
 function Quest.instructions(self)
   print("Instructions: ")
@@ -46,7 +53,33 @@ function Quest.response(self)
     io.flush()
     response = io.read()
 
-    Quest:processResponse(response)
+    qr = Quest:processResponse(response)
+    if qr == -1 then
+      print("")
+      print("Whoops, that is an invalid option.")
+      print("")
+    elseif qr == 12 then
+      print(":( You moved, but no food was found. Your Energy Level: " .. player:getEnergy())
+    elseif qr == 16 then
+      print(":) You found food! Your Energy level: " .. player:getEnergy())
+    elseif qr == 20 then
+      print("!! You've hit a wall, choose another direction.")
+    elseif qr == 50 then
+      print("")
+      print("WINNER! Congratuations you've just completed your first Energy Quest!")
+      print("")
+      os.exit()
+    elseif qr == 60 then
+      print("")
+      print("GAME OVER! Unfortunately your Energy Quest bested you, please try again!")
+      print("")
+      os.exit()
+    elseif qr == 99 then
+      print("")
+      print("Thanks for playing! Goodbye!")
+      print("")
+      os.exit()
+    end
   until response == "q" or response == "Q"
 end
 
@@ -55,34 +88,27 @@ function Quest.processResponse(self, response)
     moveresponse = level:movePlayer(response)
     if (moveresponse == 1) then
       player:removeEnergy(1)
-      print(":( You moved, but no food was found. Your Energy Level: " .. player:getEnergy())
+
+      if player:getEnergy() <= 0 then
+        return 60
+      end
+
+      return 12
     elseif (moveresponse == 2) then
       player:addEnergy(20)
-      print(":) You found food! Your Energy level: " .. player:getEnergy())
-    elseif (moveresponse == -1) then
-      print("!! You've hit a wall, choose another direction.")
-    end
 
-    if player:getEnergy() >= 100 then
-      print("")
-      print("WINNER! Congratuations you've just completed your first Energy Quest!")
-      print("")
-      os.exit() 
-    elseif player:getEnergy() <= 0 then
-      print("")
-      print("GAME OVER! Unfortunately your Energy Quest bested you, please try again!")
-      print("")
-      os.exit()
+      if player:getEnergy() >= 100 then
+        return 50
+      end
+
+      return 16
+    elseif (moveresponse == -1) then
+      return 20
     end
   elseif response == "q" or response == "Q" then
-    print("")
-    print("Thanks for playing! Goodbye!")
-    print("")
-    os.exit()
+    return 99
   else
-    print("")
-    print("Whoops, that is an invalid option.")
-    print("")
+    return -1
   end
 
 end
@@ -91,7 +117,9 @@ function Quest.run(self)
   print("Welcome to Energy Quest!")
   print("")
 
-  Quest:instructions()
+  quest = Quest:new()
 
-  Quest:response()
+  quest:instructions()
+
+  quest:response()
 end

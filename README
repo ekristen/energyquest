@@ -9,14 +9,36 @@ lua game.lua
 
 ## Instructions
 
+    You've spawned into a room, it is a box, you are in a random position. A food item is at a random position
+    The objective of the game is to find food. Each food item is worth 20 energy points.
+    Each move will cost you 1 energy point. Get to 100 energy points to win, 0 to lose.
 
+    Game Controls:
+
+    l - Move Left (West)
+    r - Move Right (East)
+    u - Move Up (North)
+    d - Move Down (South)
+
+    Type q or Q at any time to quit the game.
+
+    Good luck on your quest!
 
 # Tests
 
 ## How to Run the Tests
 
-cd test
+Change directory into tests folder (cd tests)
+
+### Testing Level Class
 
 lua level.test.lua 
 
+### Testing Player Class
+
 lua player.test.lua
+
+### Testing Quest Class
+
+lua quest.test.lua
+
