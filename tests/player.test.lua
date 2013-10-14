@@ -16,5 +16,10 @@ function TestPlayer:test1()
   assertEquals( self.player:getEnergy(), 50 )
 end
 
+function TestPlayer:test2()
+  print("Testing Adding Energy")
+  self.player:addEnergy(20)
+  assertEquals( self.player:getEnergy(), 70 )
+end
 
 LuaUnit:run()
