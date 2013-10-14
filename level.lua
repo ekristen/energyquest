@@ -52,16 +52,49 @@ function Level.getPlayerPosition(self)
   return self.playerPositionXY
 end
 
+function Level.getPlayerPositionX(self)
+  return self.playerPositionX
+end
+
+function Level.getPlayerPositionY(self)
+  return self.playerPositionY
+end
+
 function Level.getFoodPosition(self)
   return self.foodPositionXY
 end
 
+function Level.getFoodPositionX(self)
+  return self.foodPositionX
+end
+
+function Level.getFoodPositionY(self)
+  return self.foodPositionY
+end
+
+function Level.setFoodPositionX(self, x)
+  self.foodPositionX = x
+  self.foodPositionXY = self.foodPositionX .. self.foodPositionY
+end
+
+function Level.setFoodPositionY(self, y)
+  self.foodPositionY = y
+  self.foodPositionXY = self.foodPositionX .. self.foodPositionY
+end
+
+
+function Level.setPlayerPosition(self, xy)
+  self.playerPositionXY = xy
+end
+
 function Level.setPlayerPositionX(self, x)
   self.playerPositionX = x
+  self.playerPositionXY = self.playerPositionX .. self.playerPositionY
 end
 
 function Level.setPlayerPositionY(self, y)
   self.playerPositionY = y
+  self.playerPositionXY = self.playerPositionX .. self.playerPositionY
 end
 
 function Level.movePlayer(self, direction)

@@ -20,3 +20,7 @@ end
 function Player.getEnergy (self)
   return self.energy
 end
+
+function Player.setEnergy (self, e)
+  self.energy = e
+end

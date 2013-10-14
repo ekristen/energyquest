@@ -1,9 +1,18 @@
 Quest = {}
 Quest.__index = Quest;
 
-function Quest.new ()
+function Quest.new (initialEnergy, initialSize)
   local self = setmetatable({}, Quest)
-  
+
+  require("player")
+  require("level")
+
+  player = Player.new(50);
+  level = Level.new(5)
+
+  self.player = player
+  self.level = level
+
   return self
 end
 
@@ -79,14 +88,9 @@ function Quest.processResponse(self, response)
 end
 
 function Quest.run(self)
-  require("player")
-  require("level")
-
-  player = Player.new(50);
-  level = Level.new(5)
-
   print("Welcome to Energy Quest!")
   print("")
+
   Quest:instructions()
 
   Quest:response()
