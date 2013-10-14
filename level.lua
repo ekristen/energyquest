@@ -19,6 +19,8 @@ function Level.new(initialSize)
     end
   end
 
+  math.randomseed(os.time())
+
   -- set up initial player positions
   self.playerPositionX = math.random(0, self.size)
   self.playerPositionY = math.random(0, self.size)
