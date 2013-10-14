@@ -57,6 +57,7 @@ function Level.getFoodPosition(self)
 end
 
 function Level.movePlayer(self, direction)
+
   if direction == "l" then
     if self.playerPositionX > 0 then
       newPlayerPositionX = self.playerPositionX - 1
@@ -74,7 +75,6 @@ function Level.movePlayer(self, direction)
       self.playerPositionX = newPlayerPositionX
       self.grid[self.playerPositionX][self.playerPositionY].player = true;
       self.playerPositionXY = self.playerPositionX .. self.playerPositionY
-
     else
       return -1
     end
@@ -89,8 +89,8 @@ function Level.movePlayer(self, direction)
       return -1
     end
   elseif direction == "d" then
-    if self.playerPositionY > self.size then
-      newPlayerPositionY = self.playerPositionY - 1
+    if self.playerPositionY < self.size then
+      newPlayerPositionY = self.playerPositionY + 1
       self.grid[self.playerPositionX][self.playerPositionY].player = false;
       self.playerPositionY = newPlayerPositionY
       self.grid[self.playerPositionX][self.playerPositionY].player = true;
